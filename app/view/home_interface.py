@@ -20,7 +20,7 @@ class BannerWidget(QWidget):
         self.setFixedHeight(320)
 
         self.vBoxLayout = QVBoxLayout(self)
-        self.galleryLabel = QLabel(f'三月七小助手 \nMarch7thAssistant', self)
+        self.galleryLabel = QLabel(f'My Tools', self)
         self.galleryLabel.setStyleSheet("color: white;font-size: 30px; font-weight: 600;")
 
         # 创建阴影效果
@@ -50,7 +50,8 @@ class BannerWidget(QWidget):
         self.vBoxLayout.setSpacing(0)
         self.vBoxLayout.setContentsMargins(0, 20, 0, 0)
         self.vBoxLayout.addWidget(self.galleryLabel)
-        self.vBoxLayout.addWidget(self.linkCardLayout, 1, Qt.AlignBottom)
+        # self.vBoxLayout.addWidget(self.linkCardView, 1, Qt.AlignBottom)
+        self.vBoxLayout.addLayout(linkCardLayout)
         self.vBoxLayout.setAlignment(Qt.AlignLeft | Qt.AlignTop)
 
         self.linkCardView.addCard(
@@ -92,7 +93,7 @@ class HomeInterface(ScrollArea):
         self.vBoxLayout = QVBoxLayout(self.view)
 
         self.__initWidget()
-        self.loadSamples()
+        # self.loadSamples()
 
     def __initWidget(self):
         self.view.setObjectName('view')

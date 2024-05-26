@@ -12,7 +12,7 @@ class LinkCard(QFrame):
     def __init__(self, icon, title, content, url, parent=None):
         super().__init__(parent=parent)
         self.url = QUrl(url)
-        self.setFixedSize(198, 220)
+        self.setFixedSize(188, 190)
         self.iconWidget = IconWidget(icon, self)
         self.titleLabel = QLabel(title, self)
         self.contentLabel = QLabel(TextWrap.wrap(content, 28, False)[0], self)

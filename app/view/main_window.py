@@ -1,10 +1,10 @@
 from PyQt5.QtCore import Qt, QSize
-from PyQt5.QtGui import QIcon, QColor
-from PyQt5.QtWidgets import QFrame, QHBoxLayout, QApplication
+from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QApplication
 
 from contextlib import redirect_stdout
 with redirect_stdout(None):
-    from qfluentwidgets import NavigationItemPosition, FluentWindow, SubtitleLabel, setFont, setThemeColor, setTheme, Theme, \
+    from qfluentwidgets import NavigationItemPosition, FluentWindow, setThemeColor, setTheme, Theme, \
         SplashScreen, NavigationBarPushButton, toggleTheme
     from qfluentwidgets import FluentIcon as FIF
 
@@ -35,7 +35,7 @@ class MainWindow(FluentWindow):
 
         self.resize(960, 640)
         self.setWindowIcon(QIcon('./app/assets/images/March7th.ico'))
-        self.setWindowTitle("March7th Assistant")
+        self.setWindowTitle("My Tools")
 
         # 创建启动画面
         self.splashScreen = SplashScreen(self.windowIcon(), self)
