@@ -3,15 +3,16 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication
 
 from contextlib import redirect_stdout
+
 with redirect_stdout(None):
-    from qfluentwidgets import NavigationItemPosition, FluentWindow, setThemeColor, setTheme, Theme, \
-        SplashScreen, NavigationBarPushButton, toggleTheme
+    from qfluentwidgets import NavigationItemPosition, setThemeColor, setTheme, Theme, \
+        SplashScreen, NavigationBarPushButton, toggleTheme, MSFluentWindow
     from qfluentwidgets import FluentIcon as FIF
 
 from .home_interface import HomeInterface
 
 
-class MainWindow(FluentWindow):
+class MainWindow(MSFluentWindow):
     """ 主界面 """
 
     def __init__(self):
