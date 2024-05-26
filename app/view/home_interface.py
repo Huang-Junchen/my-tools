@@ -36,15 +36,21 @@ class BannerWidget(QWidget):
         self.banner = None
         self.path = None
 
-        self.linkCardView = LinkCardView(self)
-
 
         self.galleryLabel.setObjectName('galleryLabel')
+
+        self.linkCardView = LinkCardView(self)
+        self.linkCardView.setContentsMargins(0, 0, 0, 36)
+        # Create a horizontal layout for the linkCardView with bottom alignment and margin
+        linkCardLayout = QHBoxLayout()
+        linkCardLayout.addWidget(self.linkCardView)
+        # linkCardLayout.setContentsMargins(0, 0, 0, 0)  # Add bottom margin of 20 units
+        linkCardLayout.setAlignment(Qt.AlignBottom)
 
         self.vBoxLayout.setSpacing(0)
         self.vBoxLayout.setContentsMargins(0, 20, 0, 0)
         self.vBoxLayout.addWidget(self.galleryLabel)
-        self.vBoxLayout.addWidget(self.linkCardView, 1, Qt.AlignBottom)
+        self.vBoxLayout.addWidget(self.linkCardLayout, 1, Qt.AlignBottom)
         self.vBoxLayout.setAlignment(Qt.AlignLeft | Qt.AlignTop)
 
         self.linkCardView.addCard(

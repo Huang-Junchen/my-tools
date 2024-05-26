@@ -1,9 +1,12 @@
 from PyQt5.QtCore import Qt, QSize
-from PyQt5.QtGui import QIcon
+from PyQt5.QtGui import QIcon, QColor
 from PyQt5.QtWidgets import QFrame, QHBoxLayout, QApplication
-from qfluentwidgets import NavigationItemPosition, FluentWindow, SubtitleLabel, setFont, setThemeColor, setTheme, Theme, \
-    SplashScreen, NavigationBarPushButton, toggleTheme
-from qfluentwidgets import FluentIcon as FIF
+
+from contextlib import redirect_stdout
+with redirect_stdout(None):
+    from qfluentwidgets import NavigationItemPosition, FluentWindow, SubtitleLabel, setFont, setThemeColor, setTheme, Theme, \
+        SplashScreen, NavigationBarPushButton, toggleTheme
+    from qfluentwidgets import FluentIcon as FIF
 
 from .home_interface import HomeInterface
 
@@ -31,7 +34,7 @@ class MainWindow(FluentWindow):
         self.setWindowFlags(Qt.WindowMinimizeButtonHint | Qt.WindowCloseButtonHint)
 
         self.resize(960, 640)
-        self.setWindowIcon(QIcon('./assets/logo/March7th.ico'))
+        self.setWindowIcon(QIcon('./app/assets/images/March7th.ico'))
         self.setWindowTitle("March7th Assistant")
 
         # 创建启动画面

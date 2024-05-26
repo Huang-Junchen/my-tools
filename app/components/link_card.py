@@ -16,7 +16,7 @@ class LinkCard(QFrame):
         self.iconWidget = IconWidget(icon, self)
         self.titleLabel = QLabel(title, self)
         self.contentLabel = QLabel(TextWrap.wrap(content, 28, False)[0], self)
-        # self.contentLabel.setStyleSheet("font-size: 14px; font-weight: 600;")
+        self.contentLabel.setStyleSheet("font-size: 14px; font-weight: 600;")
         self.urlWidget = IconWidget(FluentIcon.LINK, self)
 
         self.__initWidget()
