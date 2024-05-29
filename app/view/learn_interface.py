@@ -1,6 +1,9 @@
 from PyQt5.QtWidgets import QWidget, QGridLayout
 from PyQt5.QtCore import pyqtSlot
-from qfluentwidgets import ScrollArea, PushButton, FluentIcon
+
+from contextlib import redirect_stdout
+with redirect_stdout(None):
+    from qfluentwidgets import ScrollArea, PushButton, FluentIcon
 
 from app.common.style_sheet import StyleSheet
 

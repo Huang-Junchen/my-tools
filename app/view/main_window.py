@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import QApplication
 
 from contextlib import redirect_stdout
 
-from .learn_interface import LearnInterface
+from .terminal_interface import TerminalInterface
 
 with redirect_stdout(None):
     from qfluentwidgets import NavigationItemPosition, setThemeColor, setTheme, Theme, \
@@ -12,7 +12,7 @@ with redirect_stdout(None):
     from qfluentwidgets import FluentIcon as FIF
 
 from .home_interface import HomeInterface
-
+from .learn_interface import LearnInterface
 
 class MainWindow(MSFluentWindow):
     """ 主界面 """
@@ -50,14 +50,15 @@ class MainWindow(MSFluentWindow):
     def initInterface(self):
         self.homeInterface = HomeInterface(self)
         self.learnInterface = LearnInterface(self)
+        self.terminalInterface = TerminalInterface(self)
 
     def initNavigation(self):
         self.addSubInterface(self.homeInterface, FIF.HOME, self.tr('主页'))
         self.addSubInterface(self.learnInterface, FIF.EDUCATION, self.tr('学习'))
 
         self.navigationInterface.addWidget(
-            'startGameButton',
-            NavigationBarPushButton(FIF.PLAY, '启动游戏', isSelectable=False),
+            'startButton',
+            NavigationBarPushButton(FIF.PLAY, '启动', isSelectable=False),
             lambda: toggleTheme(lazy=True),
             NavigationItemPosition.BOTTOM)
 
@@ -67,6 +68,7 @@ class MainWindow(MSFluentWindow):
             lambda: toggleTheme(lazy=True),
             NavigationItemPosition.BOTTOM)
 
+        self.addSubInterface(self.terminalInterface, FIF.COMMAND_PROMPT, self.tr('终端'), position=NavigationItemPosition.BOTTOM)
         # self.addSubInterface(self.settingInterface, FIF.SETTING, self.tr('设置'), position=NavigationItemPosition.BOTTOM)
 
         self.splashScreen.finish()
