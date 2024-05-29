@@ -1,8 +1,10 @@
-from PyQt5.QtCore import Qt, QSize
+from PyQt5.QtCore import Qt, QSize, QEvent
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication
 
 from contextlib import redirect_stdout
+
+from .learn_interface import LearnInterface
 
 with redirect_stdout(None):
     from qfluentwidgets import NavigationItemPosition, setThemeColor, setTheme, Theme, \
@@ -27,16 +29,11 @@ class MainWindow(MSFluentWindow):
         setTheme(Theme.AUTO, lazy=True)
         self.setMicaEffectEnabled(False)
 
-        # 禁用最大化
-        self.titleBar.maxBtn.setHidden(True)
-        self.titleBar.maxBtn.setDisabled(True)
-        self.titleBar.setDoubleClickEnabled(False)
-        self.setResizeEnabled(False)
-        self.setWindowFlags(Qt.WindowMinimizeButtonHint | Qt.WindowCloseButtonHint)
-
         self.resize(960, 640)
-        self.setWindowIcon(QIcon('./app/assets/images/March7th.ico'))
+        self.setWindowIcon(QIcon('./app/assets/images/icon.ico'))
         self.setWindowTitle("My Tools")
+
+        self.disableMaximize()
 
         # 创建启动画面
         self.splashScreen = SplashScreen(self.windowIcon(), self)
@@ -52,9 +49,11 @@ class MainWindow(MSFluentWindow):
 
     def initInterface(self):
         self.homeInterface = HomeInterface(self)
+        self.learnInterface = LearnInterface(self)
 
     def initNavigation(self):
         self.addSubInterface(self.homeInterface, FIF.HOME, self.tr('主页'))
+        self.addSubInterface(self.learnInterface, FIF.EDUCATION, self.tr('学习'))
 
         self.navigationInterface.addWidget(
             'startGameButton',
@@ -71,3 +70,11 @@ class MainWindow(MSFluentWindow):
         # self.addSubInterface(self.settingInterface, FIF.SETTING, self.tr('设置'), position=NavigationItemPosition.BOTTOM)
 
         self.splashScreen.finish()
+
+    def disableMaximize(self):
+        # 禁用最大化
+        self.titleBar.maxBtn.setHidden(True)
+        self.titleBar.maxBtn.setDisabled(True)
+        self.titleBar.setDoubleClickEnabled(False)
+        self.setResizeEnabled(False)
+        # self.setWindowFlags(Qt.WindowMinimizeButtonHint | Qt.WindowCloseButtonHint)
