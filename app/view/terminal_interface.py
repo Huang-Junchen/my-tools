@@ -5,22 +5,24 @@ from PyQt5.QtCore import QProcess, QProcessEnvironment
 from qfluentwidgets import ScrollArea
 from PyQt5.QtCore import pyqtSlot
 
+from app.common.style_sheet import StyleSheet
+
 
 class TerminalInterface(ScrollArea):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.initUI()
+        self.__initWidget()
         self.process = QProcess(self)
         self.process.readyReadStandardOutput.connect(self.handle_stdout)
         self.process.readyReadStandardError.connect(self.handle_stderr)
 
-    def initUI(self):
+    def __initWidget(self):
         self.setObjectName('terminalInterface')
-        self.setWindowTitle("Terminal Output Example")
-        self.setGeometry(100, 100, 800, 600)
+        StyleSheet.HOME_INTERFACE.apply(self)
 
         self.centralWidget = QWidget(self)
-        # self.setCentralWidget(self.centralWidget)
+        self.setWidget(self.centralWidget)
+        self.setWidgetResizable(True)
 
         self.layout = QVBoxLayout(self.centralWidget)
 
@@ -31,6 +33,9 @@ class TerminalInterface(ScrollArea):
         self.runButton = QPushButton("Run Command", self)
         self.runButton.clicked.connect(self.run_command)
         self.layout.addWidget(self.runButton)
+
+        self.layout.setStretch(0, 1)
+        self.layout.setStretch(1, 0)
 
     def run_command(self):
         self.output.clear()
